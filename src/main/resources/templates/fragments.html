@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head th:fragment="head">
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" th:href="@{/style/bootstrap-custom.min.css}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" th:href="@{/style/style.css}">
+    <link href="https://fonts.googleapis.com/css2?family=Fjalla+One&family=PT+Sans&family=Sansita+Swashed:wght@900&display=swap"
+          rel="stylesheet">
+    <script src="https://kit.fontawesome.com/3482788823.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <header th:fragment="header">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-warning">
+            <a class="navbar-brand" id="logo" th:href="@{/}">Wisconsin Fried Chicken <i class="fas fa-drumstick-bite"></i></a>
+            <button class="navbar-toggler"
+                    type="button"
+                    data-toggle="collapse"
+                    data-target="#navbarNav"
+                    aria-controls="navbarNav"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav">
+<!--                    <li class="nav-item active">
+                        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                    </li>-->
+                    <div sec:authorize="isAuthenticated()">
+                        <li class="nav-item">
+                            <a class="nav-link" th:href="@{/benefits}">Employee Benefits</a>
+                        </li>
+                        <li class="nav-item">
+                            <form th:action="@{/logout}" method="post">
+                                <button id="logout" class="btn btn-outline-light" type="submit">Logout</button>
+                            </form>
+                        </li>
+                    </div>
+                    <div sec:authorize="hasAuthority('major')">
+                        <li class="nav-item">
+                            <a class="nav-link" th:href="@{/recipe}">The Recipe</a>
+                        </li>
+                    </div>
+                    <div sec:authorize="isAnonymous()">
+                        <li class="nav-item">
+                            <a class="nav-link" th:href="@{/login}">Login</a>
+                        </li>
+                    </div>
+                </ul>
+            </div>
+            <!--            <div sec:authorize="isAuthenticated()">
+                <h1 th:text="|Hello ${#authentication.name}!|"></h1>
+                <form th:action="@{/logout}" method="post">
+                    <input id="logout" type="submit" value="Logout">
+                </form>
+            </div>
+
+                        allow any unauthenticated users to see the div and its content
+            <div sec:authorize="isAnonymous()">
+                <h1><a th:href="@{/login}">Login</a></h1>
+            </div>
+            </div>
+            <div class="div5">
+                         allow anyone with the authority of 'crew' to see the div and its content
+                <div sec:authorize="hasAuthority('crew')">
+                    <h1><a th:href="@{/my-training}">View My Training</a></h1>
+                </div>
+            </div>-->
+        </nav>
+    </header>
+
+    <div th:fragment="scripts" id="scripts">
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    </div>
+</body>
+</html>

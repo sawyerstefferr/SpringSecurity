@@ -1,0 +1,18 @@
+body {
+    font-family: 'PT Sans', sans-serif;
+}
+#container{
+    margin:20px;
+}
+h1,h2,h3,h4 {
+    font-family: 'Fjalla One', sans-serif;
+}
+#logo{
+    font-size:40px;
+    font-family: 'Sansita Swashed', cursive;
+}
+.navbar-collapse{
+
+}
+
+
